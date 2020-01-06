@@ -1,0 +1,9 @@
+Name: libpgtypes
+Description: PostgreSQL libpgtypes library
+Url: http://www.postgresql.org/
+Version: 12.1
+Requires: 
+Requires.private: 
+Cflags: -I/home/moulinus/Code/Web/Minesweeper/pgsql/include
+Libs: -L/home/moulinus/Code/Web/Minesweeper/pgsql/lib -lpgtypes
+Libs.private:  -lm
