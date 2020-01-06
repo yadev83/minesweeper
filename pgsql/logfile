@@ -1,0 +1,37 @@
+2020-01-06 13:26:02.525 CET [28662] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-06 13:26:02.525 CET [28662] LOG:  could not bind IPv6 address "::1": Adresse déjà utilisée
+2020-01-06 13:26:02.525 CET [28662] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2020-01-06 13:26:02.525 CET [28662] LOG:  could not bind IPv4 address "127.0.0.1": Adresse déjà utilisée
+2020-01-06 13:26:02.525 CET [28662] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2020-01-06 13:26:02.525 CET [28662] WARNING:  could not create listen socket for "localhost"
+2020-01-06 13:26:02.526 CET [28662] FATAL:  could not create any TCP/IP sockets
+2020-01-06 13:26:02.526 CET [28662] LOG:  database system is shut down
+2020-01-06 13:26:18.075 CET [28671] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-06 13:26:18.076 CET [28671] LOG:  could not bind IPv6 address "::1": Adresse déjà utilisée
+2020-01-06 13:26:18.076 CET [28671] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2020-01-06 13:26:18.076 CET [28671] LOG:  could not bind IPv4 address "127.0.0.1": Adresse déjà utilisée
+2020-01-06 13:26:18.076 CET [28671] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2020-01-06 13:26:18.076 CET [28671] WARNING:  could not create listen socket for "localhost"
+2020-01-06 13:26:18.076 CET [28671] FATAL:  could not create any TCP/IP sockets
+2020-01-06 13:26:18.076 CET [28671] LOG:  database system is shut down
+2020-01-06 13:35:54.374 CET [24290] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-06 13:35:54.375 CET [24290] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-06 13:35:54.375 CET [24290] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-06 13:35:54.442 CET [24290] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-06 13:35:54.555 CET [24291] LOG:  database system was shut down at 2020-01-06 13:35:40 CET
+2020-01-06 13:35:54.897 CET [24290] LOG:  database system is ready to accept connections
+2020-01-06 13:36:53.303 CET [24317] ERROR:  SELECT * with no tables specified is not valid at character 8
+2020-01-06 13:36:53.303 CET [24317] STATEMENT:  SELECT *;
+2020-01-06 13:37:01.295 CET [24317] ERROR:  syntax error at or near ";" at character 7
+2020-01-06 13:37:01.295 CET [24317] STATEMENT:  table
+	;
+2020-01-06 13:41:26.638 CET [24635] ERROR:  syntax error at or near "createuser" at character 1
+2020-01-06 13:41:26.638 CET [24635] STATEMENT:  createuser 
+	;
+2020-01-06 13:42:35.966 CET [25035] ERROR:  role "moulinus" already exists
+2020-01-06 13:42:35.966 CET [25035] STATEMENT:  CREATE ROLE moulinus NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;
+2020-01-06 13:43:28.838 CET [25062] FATAL:  database "moulinus" does not exist
+2020-01-06 13:43:36.615 CET [25067] FATAL:  database "moulinus" does not exist
+2020-01-06 13:44:04.895 CET [25077] ERROR:  unrecognized privilege type "permissions"
+2020-01-06 13:44:04.895 CET [25077] STATEMENT:  GRANT permissions ON DATABASE minesweeper TO minesweeper;
+2020-01-06 13:45:08.802 CET [25164] FATAL:  database "moulinus" does not exist

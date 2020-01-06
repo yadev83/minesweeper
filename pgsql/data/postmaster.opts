@@ -1,0 +1,1 @@
+/home/moulinus/Code/Web/Minesweeper/pgsql/bin/postgres "-D" "data"
