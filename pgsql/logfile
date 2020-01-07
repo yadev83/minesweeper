@@ -41,3 +41,34 @@
 2020-01-06 14:11:46.666 CET [24290] LOG:  background worker "logical replication launcher" (PID 24297) exited with exit code 1
 2020-01-06 14:11:46.666 CET [24292] LOG:  shutting down
 2020-01-06 14:11:46.824 CET [24290] LOG:  database system is shut down
+2020-01-06 15:50:27.571 CET [806] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-06 15:50:27.572 CET [806] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-06 15:50:27.572 CET [806] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-06 15:50:27.639 CET [806] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-06 15:50:27.763 CET [807] LOG:  database system was shut down at 2020-01-06 14:11:46 CET
+2020-01-06 15:50:27.798 CET [806] LOG:  database system is ready to accept connections
+2020-01-06 15:50:55.293 CET [853] ERROR:  relation "games" does not exist at character 15
+2020-01-06 15:50:55.293 CET [853] STATEMENT:  SELECT * FROM games;
+2020-01-06 17:07:17.726 CET [853] ERROR:  relation "minesweeper" does not exist at character 15
+2020-01-06 17:07:17.726 CET [853] STATEMENT:  SELECT * FROM minesweeper;
+2020-01-06 17:07:31.105 CET [853] ERROR:  relation "games" does not exist at character 16
+2020-01-06 17:07:31.105 CET [853] STATEMENT:  select * from 
+	games;
+2020-01-06 17:43:49.027 CET [8670] ERROR:  null value in column "height" violates not-null constraint
+2020-01-06 17:43:49.027 CET [8670] DETAIL:  Failing row contains (1, null, 0, ALED, null).
+2020-01-06 17:43:49.027 CET [8670] STATEMENT:  insert into "game_modes" (height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5)
+2020-01-06 17:47:36.683 CET [8670] ERROR:  null value in column "height" violates not-null constraint
+2020-01-06 17:47:36.683 CET [8670] DETAIL:  Failing row contains (2, null, 0, ALED, null).
+2020-01-06 17:47:36.683 CET [8670] STATEMENT:  insert into "game_modes" (height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5)
+2020-01-06 17:48:04.823 CET [853] ERROR:  relation "gamemodes" does not exist at character 15
+2020-01-06 17:48:04.823 CET [853] STATEMENT:  SELECT * FROM gamemodes;
+2020-01-06 17:48:10.735 CET [853] ERROR:  relation "gamemode" does not exist at character 15
+2020-01-06 17:48:10.735 CET [853] STATEMENT:  select * from gamemode;
+2020-01-06 17:48:14.386 CET [853] ERROR:  syntax error at or near "hel" at character 1
+2020-01-06 17:48:14.386 CET [853] STATEMENT:  hel;
+2020-01-06 17:50:06.411 CET [8938] ERROR:  syntax error at or near "" at character 1
+2020-01-06 17:50:06.411 CET [8938] STATEMENT:  [A
+	;
+2020-01-06 17:55:16.074 CET [9175] ERROR:  null value in column "height" violates not-null constraint
+2020-01-06 17:55:16.074 CET [9175] DETAIL:  Failing row contains (4, null, 0, OSKOUR, null).
+2020-01-06 17:55:16.074 CET [9175] STATEMENT:  insert into "game_modes" (height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5)
