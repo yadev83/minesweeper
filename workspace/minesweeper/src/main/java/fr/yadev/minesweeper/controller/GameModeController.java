@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.yadev.minesweeper.form.GameModeForm;
-import fr.yadev.minesweeper.model.GameMode;
-import fr.yadev.minesweeper.repository.GameModeRepository;
+import fr.yadev.minesweeper.services.GameModeService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,36 +23,31 @@ import lombok.Setter;
 @RequestMapping("/gamemode")
 public class GameModeController {
 	@Autowired
-	private GameModeRepository gamemodes;
+	private GameModeService service;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
-		model.addAttribute("gamemodes", gamemodes.findAll());
+		model.addAttribute("gamemodes", service.getGameModes());
 		
 		return "list_gamemode";
 	}
 	
 	@GetMapping({"/add", "edit/{id}"})
 	public String add(@PathVariable(required = false) Long id, Model model) {
-		GameModeForm form = new GameModeForm();
-		model.addAttribute("gamemode", form);
-		
+		GameModeForm form;
 		if(id != null) {
-			GameMode gm = gamemodes.findById(id).get();
-			
-			form.setId(gm.getId());
-			form.setTitle(gm.getTitle());
-			form.setHeight(gm.getHeight());
-			form.setWidth(gm.getWidth());
-			form.setNbMines(gm.getNbMines());
+			form = service.getGameModeForm(id);
+		}else {
+			form = new GameModeForm();
 		}
+		model.addAttribute("gamemode", form);
 		
 		return "add_gamemode";
 	}
 	
 	@GetMapping("/remove/{id}")
 	public String remove(@PathVariable(required = true) Long id, Model model) {
-		gamemodes.deleteById(id);
+		service.deleteGameMode(id);
 		return "redirect:/gamemode/list";
 	}
 	
@@ -70,18 +64,7 @@ public class GameModeController {
 			return "add_gamemode";
 		}
 		
-		GameMode gm = new GameMode();
-		
-		if(form.getId() != null) {
-			gm = gamemodes.findById(form.getId()).get();
-		}
-		
-		gm.setTitle(form.getTitle());
-		gm.setHeight(form.getHeight());
-		gm.setWidth(form.getWidth());
-		gm.setNbMines(form.getNbMines());
-		
-		gamemodes.save(gm);
+		service.editGameMode(form.getId(), form.getTitle(), form.getWidth(), form.getHeight(), form.getNbMines());
 		
 		return "redirect:/gamemode/list";
 	}
