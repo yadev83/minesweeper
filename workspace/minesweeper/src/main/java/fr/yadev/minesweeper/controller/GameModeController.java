@@ -51,6 +51,18 @@ public class GameModeController {
 		return "add_gamemode";
 	}
 	
+	@GetMapping("/remove/{id}")
+	public String remove(@PathVariable(required = true) Long id, Model model) {
+		gamemodes.deleteById(id);
+		return "redirect:/gamemode/list";
+	}
+	
+	@GetMapping("/remove")
+	public String removeError() {
+		//If no id is provided to the /remove page, redirects to the list instead
+		return "redirect:/gamemode/list";
+	}
+	
 	@PostMapping("/add")
 	public String addForm(@Valid @ModelAttribute("gamemode") GameModeForm form, BindingResult result, Model model) {
 		if(result.hasErrors()) {
