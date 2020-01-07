@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Index {
+public class IndexController {
 	@GetMapping("/")
 	public String welcome(Model model) {
 		model.addAttribute("message", "Hello There");
