@@ -72,3 +72,20 @@
 2020-01-06 17:55:16.074 CET [9175] ERROR:  null value in column "height" violates not-null constraint
 2020-01-06 17:55:16.074 CET [9175] DETAIL:  Failing row contains (4, null, 0, OSKOUR, null).
 2020-01-06 17:55:16.074 CET [9175] STATEMENT:  insert into "game_modes" (height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5)
+2020-01-08 11:11:14.287 CET [16070] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-08 11:11:14.288 CET [16070] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-08 11:11:14.288 CET [16070] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-08 11:11:14.355 CET [16070] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-08 11:11:14.490 CET [16071] LOG:  database system was interrupted; last known up at 2020-01-07 11:38:12 CET
+2020-01-08 11:11:15.502 CET [16071] LOG:  invalid record length at 0/1626468: wanted 24, got 0
+2020-01-08 11:11:15.502 CET [16071] LOG:  invalid primary checkpoint record
+2020-01-08 11:11:15.502 CET [16071] PANIC:  could not locate a valid checkpoint record
+2020-01-08 11:11:15.702 CET [16070] LOG:  startup process (PID 16071) was terminated by signal 6: Abandon
+2020-01-08 11:11:15.702 CET [16070] LOG:  aborting startup due to startup process failure
+2020-01-08 11:11:15.704 CET [16070] LOG:  database system is shut down
+2020-01-08 11:11:30.180 CET [16078] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-08 11:11:30.181 CET [16078] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-08 11:11:30.181 CET [16078] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-08 11:11:30.248 CET [16078] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-08 11:11:30.372 CET [16079] LOG:  database system was shut down at 2020-01-08 11:11:28 CET
+2020-01-08 11:11:30.457 CET [16078] LOG:  database system is ready to accept connections
