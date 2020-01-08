@@ -25,6 +25,9 @@ public class Game {
 	@Column(nullable = false)
 	private Long score;
 	
+	@Column(nullable = false)
+	private boolean playing;
+	
 	@OneToMany
 	private List<Tile> Tiles;
 	
