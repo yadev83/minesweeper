@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.yadev.minesweeper.form.GameForm;
-import fr.yadev.minesweeper.form.GameModeForm;
 import fr.yadev.minesweeper.model.Game;
 import fr.yadev.minesweeper.services.GameService;
+import fr.yadev.minesweeper.services.MinesweeperGameService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +26,9 @@ import lombok.Setter;
 public class GameController {
 	@Autowired
 	private GameService service;
+	
+	@Autowired 
+	private MinesweeperGameService ms_game;
 	
 	@GetMapping("/start")
 	public String start(Model model) {	

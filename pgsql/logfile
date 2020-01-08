@@ -89,3 +89,585 @@
 2020-01-08 11:11:30.248 CET [16078] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2020-01-08 11:11:30.372 CET [16079] LOG:  database system was shut down at 2020-01-08 11:11:28 CET
 2020-01-08 11:11:30.457 CET [16078] LOG:  database system is ready to accept connections
+2020-01-08 14:32:04.166 CET [27997] ERROR:  syntax error at or near "*" at character 8
+2020-01-08 14:32:04.166 CET [27997] STATEMENT:  DELETE * FROM game;
+2020-01-08 14:32:10.456 CET [27997] ERROR:  syntax error at or near "REMOVE" at character 1
+2020-01-08 14:32:10.456 CET [27997] STATEMENT:  REMOVE * FROM game;
+2020-01-08 14:32:14.854 CET [27997] ERROR:  syntax error at or near "DROPTABLE" at character 1
+2020-01-08 14:32:14.854 CET [27997] STATEMENT:  DROPTABLE game;
+2020-01-08 14:32:20.443 CET [27997] ERROR:  cannot drop table game because other objects depend on it
+2020-01-08 14:32:20.443 CET [27997] DETAIL:  constraint fki1qwuqiy9psrf4bxuvywc89tp on table game_tiles depends on table game
+2020-01-08 14:32:20.443 CET [27997] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2020-01-08 14:32:20.443 CET [27997] STATEMENT:  DROP TABLE game;
+2020-01-08 14:33:04.726 CET [27946] ERROR:  relation "game" does not exist at character 129
+2020-01-08 14:33:04.726 CET [27946] STATEMENT:  select game0_.id as id1_0_, game0_."gamemode_id" as gamemode4_0_, game0_.playing as playing2_0_, game0_.score as score3_0_ from "game" game0_
+2020-01-08 14:33:37.615 CET [28101] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-08 14:33:37.615 CET [28101] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-08 14:38:34.076 CET [28373] ERROR:  column "mined" of relation "tiles" already exists
+2020-01-08 14:38:34.076 CET [28373] STATEMENT:  alter table "tiles" add column mined boolean
+2020-01-08 14:46:42.908 CET [29144] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-08 14:46:42.908 CET [29144] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-08 14:48:45.626 CET [29234] ERROR:  cannot drop table tiles because other objects depend on it
+2020-01-08 14:48:45.626 CET [29234] DETAIL:  constraint fklg90eqvdp720pp2bn71duojum on table game_tiles depends on table tiles
+2020-01-08 14:48:45.626 CET [29234] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2020-01-08 14:48:45.626 CET [29234] STATEMENT:  DROP TABLE tiles;
+2020-01-08 14:48:52.808 CET [29234] ERROR:  syntax error at or near "*" at character 12
+2020-01-08 14:48:52.808 CET [29234] STATEMENT:  DROP TABLE *;
+2020-01-08 14:48:58.272 CET [29234] ERROR:  syntax error at or near "ALL" at character 12
+2020-01-08 14:48:58.272 CET [29234] STATEMENT:  DROP TABLE ALL
+	;
+2020-01-08 14:49:54.448 CET [29399] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:49:54.448 CET [29399] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:49:54.448 CET [29399] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:51:06.597 CET [29255] ERROR:  relation "game" does not exist at character 129
+2020-01-08 14:51:06.597 CET [29255] STATEMENT:  select game0_.id as id1_0_, game0_."gamemode_id" as gamemode4_0_, game0_.playing as playing2_0_, game0_.score as score3_0_ from "game" game0_
+2020-01-08 14:51:15.815 CET [29255] ERROR:  relation "game" does not exist at character 129
+2020-01-08 14:51:15.815 CET [29255] STATEMENT:  select game0_.id as id1_0_, game0_."gamemode_id" as gamemode4_0_, game0_.playing as playing2_0_, game0_.score as score3_0_ from "game" game0_
+2020-01-08 14:51:35.031 CET [29478] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:51:35.031 CET [29478] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:51:35.031 CET [29478] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:51:35.043 CET [29478] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:51:35.043 CET [29478] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:51:35.043 CET [29478] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:23.464 CET [29577] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:23.464 CET [29577] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:23.464 CET [29577] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:23.466 CET [29577] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:23.466 CET [29577] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:23.466 CET [29577] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:23.690 CET [29596] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:23.690 CET [29596] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:23.690 CET [29596] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:23.692 CET [29596] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:23.692 CET [29596] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:23.692 CET [29596] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:26.147 CET [29614] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:26.147 CET [29614] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:26.147 CET [29614] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:26.149 CET [29614] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:26.149 CET [29614] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:26.149 CET [29614] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:26.441 CET [29624] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:26.441 CET [29624] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:26.441 CET [29624] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:26.443 CET [29624] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:26.443 CET [29624] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:26.443 CET [29624] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:38.876 CET [29648] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:38.876 CET [29648] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:38.876 CET [29648] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:38.878 CET [29648] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:38.878 CET [29648] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:38.878 CET [29648] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:53:39.174 CET [29680] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:53:39.174 CET [29680] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:53:39.174 CET [29680] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:53:39.176 CET [29680] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:53:39.176 CET [29680] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:53:39.176 CET [29680] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:23.131 CET [29818] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:23.131 CET [29818] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:23.131 CET [29818] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:23.133 CET [29818] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:23.133 CET [29818] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:23.133 CET [29818] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:23.882 CET [29842] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:23.882 CET [29842] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:23.882 CET [29842] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:23.884 CET [29842] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:23.884 CET [29842] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:23.884 CET [29842] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:35.740 CET [29887] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:35.740 CET [29887] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:35.740 CET [29887] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:35.742 CET [29887] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:35.742 CET [29887] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:35.742 CET [29887] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:35.972 CET [29919] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:35.972 CET [29919] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:35.972 CET [29919] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:35.974 CET [29919] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:35.974 CET [29919] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:35.974 CET [29919] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:43.625 CET [29949] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:43.625 CET [29949] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:43.625 CET [29949] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:43.628 CET [29949] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:43.628 CET [29949] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:43.628 CET [29949] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:56:43.865 CET [29980] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:56:43.865 CET [29980] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:56:43.865 CET [29980] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:56:43.867 CET [29980] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:56:43.867 CET [29980] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:56:43.867 CET [29980] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:07.661 CET [30017] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:07.661 CET [30017] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:07.661 CET [30017] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:07.662 CET [30017] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:07.662 CET [30017] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:07.662 CET [30017] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:08.492 CET [30041] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:08.492 CET [30041] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:08.492 CET [30041] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:08.493 CET [30041] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:08.493 CET [30041] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:08.493 CET [30041] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:15.365 CET [30092] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:15.365 CET [30092] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:15.365 CET [30092] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:15.367 CET [30092] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:15.367 CET [30092] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:15.367 CET [30092] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:15.481 CET [30103] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:15.481 CET [30103] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:15.481 CET [30103] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:15.482 CET [30103] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:15.482 CET [30103] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:15.482 CET [30103] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:22.265 CET [30155] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:22.265 CET [30155] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:22.265 CET [30155] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:22.268 CET [30155] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:22.268 CET [30155] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:22.268 CET [30155] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:22.340 CET [30161] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:22.340 CET [30161] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:22.340 CET [30161] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:22.346 CET [30161] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:22.346 CET [30161] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:22.346 CET [30161] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:43.214 CET [30216] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:43.214 CET [30216] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:43.214 CET [30216] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:43.217 CET [30222] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:43.217 CET [30222] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:43.217 CET [30222] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:43.217 CET [30216] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:43.217 CET [30216] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:43.217 CET [30216] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:43.221 CET [30222] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:43.221 CET [30222] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:43.221 CET [30222] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:50.126 CET [30283] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:50.126 CET [30283] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:50.126 CET [30283] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:50.128 CET [30283] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:50.128 CET [30283] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:50.128 CET [30283] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:50.243 CET [30300] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:50.243 CET [30300] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:50.243 CET [30300] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:50.246 CET [30300] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:50.246 CET [30300] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:50.246 CET [30300] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:55.078 CET [30348] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:55.078 CET [30348] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:55.078 CET [30348] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:55.082 CET [30348] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:55.082 CET [30348] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:55.082 CET [30348] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:57:55.183 CET [30360] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:57:55.183 CET [30360] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:57:55.183 CET [30360] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:57:55.185 CET [30360] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:57:55.185 CET [30360] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:57:55.185 CET [30360] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:00.004 CET [30408] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:00.004 CET [30408] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:00.004 CET [30408] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:00.006 CET [30408] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:00.006 CET [30408] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:00.006 CET [30408] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:00.075 CET [30414] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:00.075 CET [30414] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:00.075 CET [30414] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:00.086 CET [30414] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:00.086 CET [30414] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:00.086 CET [30414] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:41.982 CET [30498] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:41.982 CET [30498] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:41.982 CET [30498] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:41.984 CET [30498] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:41.984 CET [30498] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:41.984 CET [30498] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:42.019 CET [30495] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:42.019 CET [30495] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:42.019 CET [30495] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:42.020 CET [30495] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:42.020 CET [30495] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:42.020 CET [30495] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:44.799 CET [30551] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:44.799 CET [30551] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:44.799 CET [30551] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:44.800 CET [30551] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:44.800 CET [30551] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:44.800 CET [30551] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:45.004 CET [30559] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:45.004 CET [30559] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:45.004 CET [30559] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:45.007 CET [30559] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:45.007 CET [30559] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:45.007 CET [30559] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:53.827 CET [30615] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:53.827 CET [30615] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:53.827 CET [30615] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:53.829 CET [30615] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:53.829 CET [30615] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:53.829 CET [30615] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:58:53.847 CET [30621] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:58:53.847 CET [30621] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:58:53.847 CET [30621] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:58:53.849 CET [30621] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:58:53.849 CET [30621] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:58:53.849 CET [30621] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:06.758 CET [30675] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:06.758 CET [30675] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:06.758 CET [30675] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:06.767 CET [30675] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:06.767 CET [30675] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:06.767 CET [30675] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:06.790 CET [30681] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:06.790 CET [30681] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:06.790 CET [30681] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:06.792 CET [30681] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:06.792 CET [30681] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:06.792 CET [30681] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:13.669 CET [30742] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:13.669 CET [30742] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:13.669 CET [30742] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:13.674 CET [30742] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:13.674 CET [30742] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:13.674 CET [30742] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:13.697 CET [30748] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:13.697 CET [30748] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:13.697 CET [30748] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:13.699 CET [30748] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:13.699 CET [30748] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:13.699 CET [30748] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:27.496 CET [30806] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:27.496 CET [30806] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:27.496 CET [30806] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:27.498 CET [30806] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:27.498 CET [30806] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:27.498 CET [30806] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 14:59:27.648 CET [30813] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 14:59:27.648 CET [30813] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 14:59:27.648 CET [30813] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 14:59:27.650 CET [30813] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 14:59:27.650 CET [30813] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 14:59:27.650 CET [30813] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:10.396 CET [30880] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:10.396 CET [30880] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:10.396 CET [30880] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:10.397 CET [30880] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:10.397 CET [30880] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:10.397 CET [30880] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:10.484 CET [30886] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:10.484 CET [30886] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:10.484 CET [30886] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:10.486 CET [30886] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:10.486 CET [30886] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:10.486 CET [30886] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:22.348 CET [30947] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:22.348 CET [30947] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:22.348 CET [30947] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:22.350 CET [30947] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:22.350 CET [30947] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:22.350 CET [30947] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:22.373 CET [30950] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:22.373 CET [30950] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:22.373 CET [30950] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:22.375 CET [30950] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:22.375 CET [30950] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:22.375 CET [30950] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:56.275 CET [31010] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:56.275 CET [31010] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:56.275 CET [31010] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:56.277 CET [31010] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:56.277 CET [31010] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:56.277 CET [31010] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:00:56.317 CET [31016] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:00:56.317 CET [31016] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:00:56.317 CET [31016] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:00:56.321 CET [31016] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:00:56.321 CET [31016] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:00:56.321 CET [31016] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:01:16.113 CET [31087] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:01:16.113 CET [31087] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:01:16.113 CET [31087] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:01:16.115 CET [31087] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:01:16.115 CET [31087] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:01:16.115 CET [31087] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:01:16.201 CET [31093] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:01:16.201 CET [31093] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:01:16.201 CET [31093] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:01:16.203 CET [31093] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:01:16.203 CET [31093] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:01:16.203 CET [31093] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:01:23.020 CET [31150] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:01:23.020 CET [31150] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:01:23.020 CET [31150] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:01:23.022 CET [31150] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:01:23.022 CET [31150] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:01:23.022 CET [31150] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:01:23.049 CET [31156] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:01:23.049 CET [31156] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:01:23.049 CET [31156] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:01:23.052 CET [31156] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:01:23.052 CET [31156] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:01:23.052 CET [31156] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:24.992 CET [31270] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:24.992 CET [31270] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:24.992 CET [31270] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:24.994 CET [31270] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:24.994 CET [31270] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:24.994 CET [31270] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:25.060 CET [31276] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:25.060 CET [31276] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:25.060 CET [31276] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:25.062 CET [31276] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:25.062 CET [31276] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:25.062 CET [31276] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:28.855 CET [31330] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:28.855 CET [31330] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:28.855 CET [31330] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:28.857 CET [31330] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:28.857 CET [31330] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:28.857 CET [31330] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:29.000 CET [31336] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:29.000 CET [31336] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:29.000 CET [31336] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:29.001 CET [31336] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:29.001 CET [31336] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:29.001 CET [31336] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:44.830 CET [31402] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:44.830 CET [31402] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:44.830 CET [31402] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:44.832 CET [31402] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:44.832 CET [31402] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:44.832 CET [31402] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:44.846 CET [31400] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:44.846 CET [31400] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:44.846 CET [31400] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:44.848 CET [31400] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:44.848 CET [31400] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:44.848 CET [31400] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:49.651 CET [31458] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:49.651 CET [31458] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:49.651 CET [31458] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:49.653 CET [31458] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:49.653 CET [31458] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:49.653 CET [31458] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:49.743 CET [31464] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:49.743 CET [31464] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:49.743 CET [31464] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:49.746 CET [31464] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:49.746 CET [31464] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:49.746 CET [31464] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:57.168 CET [31522] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:57.168 CET [31522] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:57.168 CET [31522] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:57.170 CET [31522] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:57.170 CET [31522] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:57.170 CET [31522] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:02:57.494 CET [31557] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:02:57.494 CET [31557] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:02:57.494 CET [31557] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:02:57.496 CET [31557] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:02:57.496 CET [31557] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:02:57.496 CET [31557] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:06.242 CET [31586] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:06.242 CET [31586] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:06.242 CET [31586] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:06.244 CET [31586] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:06.244 CET [31586] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:06.244 CET [31586] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:06.997 CET [31610] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:06.997 CET [31610] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:06.997 CET [31610] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:06.999 CET [31610] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:06.999 CET [31610] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:06.999 CET [31610] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:11.965 CET [31656] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:11.965 CET [31656] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:11.965 CET [31656] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:11.967 CET [31656] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:11.967 CET [31656] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:11.967 CET [31656] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:12.859 CET [31684] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:12.859 CET [31684] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:12.859 CET [31684] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:12.860 CET [31684] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:12.860 CET [31684] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:12.860 CET [31684] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:24.010 CET [31735] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:24.010 CET [31735] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:24.010 CET [31735] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:24.011 CET [31741] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:24.011 CET [31741] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:24.011 CET [31741] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:24.012 CET [31735] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:24.012 CET [31735] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:24.012 CET [31735] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:24.014 CET [31741] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:24.014 CET [31741] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:24.014 CET [31741] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:53.827 CET [31805] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:53.827 CET [31805] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:53.827 CET [31805] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:53.828 CET [31805] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:53.828 CET [31805] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:53.828 CET [31805] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:03:53.971 CET [31821] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:03:53.971 CET [31821] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:03:53.971 CET [31821] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:03:53.973 CET [31821] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:03:53.973 CET [31821] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:03:53.973 CET [31821] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:17.746 CET [31886] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:17.746 CET [31886] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:17.746 CET [31886] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:17.748 CET [31886] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:17.748 CET [31886] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:17.748 CET [31886] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:17.755 CET [31887] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:17.755 CET [31887] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:17.755 CET [31887] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:17.757 CET [31887] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:17.757 CET [31887] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:17.757 CET [31887] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:39.564 CET [31943] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:39.564 CET [31943] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:39.564 CET [31943] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:39.566 CET [31943] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:39.566 CET [31943] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:39.566 CET [31943] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:39.652 CET [31949] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:39.652 CET [31949] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:39.652 CET [31949] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:39.654 CET [31949] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:39.654 CET [31949] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:39.654 CET [31949] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:49.399 CET [32010] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:49.399 CET [32010] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:49.399 CET [32010] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:49.401 CET [32010] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:49.401 CET [32010] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:49.401 CET [32010] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:49.439 CET [32016] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:49.439 CET [32016] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:49.439 CET [32016] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:49.441 CET [32016] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:49.441 CET [32016] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:49.441 CET [32016] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:52.229 CET [32070] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:52.229 CET [32070] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:52.229 CET [32070] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:52.231 CET [32070] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:52.231 CET [32070] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:52.231 CET [32070] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:04:52.293 CET [32076] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:04:52.293 CET [32076] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:04:52.293 CET [32076] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:04:52.294 CET [32076] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:04:52.294 CET [32076] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:04:52.294 CET [32076] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:05:07.117 CET [32144] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:05:07.117 CET [32144] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:05:07.117 CET [32144] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:05:07.119 CET [32144] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:05:07.119 CET [32144] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:05:07.119 CET [32144] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:05:07.194 CET [32150] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:05:07.194 CET [32150] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:05:07.194 CET [32150] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:05:07.196 CET [32150] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:05:07.196 CET [32150] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:05:07.196 CET [32150] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:06:48.064 CET [29234] ERROR:  syntax error at or near "EQUALS" at character 33
+2020-01-08 15:06:48.064 CET [29234] STATEMENT:  SELECT * FROM tiles WHERE mined EQUALS t;
+2020-01-08 15:06:57.245 CET [29234] ERROR:  column "t" does not exist at character 33
+2020-01-08 15:06:57.245 CET [29234] STATEMENT:  SELECT * FROM tiles WHERE mined=t;
+2020-01-08 15:07:08.809 CET [29234] ERROR:  column "t" does not exist at character 33
+2020-01-08 15:07:08.809 CET [29234] STATEMENT:  SELECT * FROM tiles WHERE mined="t";
+2020-01-08 15:10:00.352 CET [32302] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:10:00.352 CET [32302] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:10:00.352 CET [32302] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:10:00.353 CET [32302] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:10:00.353 CET [32302] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:10:00.353 CET [32302] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:10:00.359 CET [32306] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:10:00.359 CET [32306] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:10:00.359 CET [32306] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:10:00.360 CET [32306] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:10:00.360 CET [32306] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:10:00.360 CET [32306] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:10:41.202 CET [32376] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:10:41.202 CET [32376] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:10:41.202 CET [32376] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:10:41.205 CET [32376] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:10:41.205 CET [32376] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:10:41.205 CET [32376] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:10:41.329 CET [32382] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:10:41.329 CET [32382] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:10:41.329 CET [32382] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:10:41.332 CET [32382] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:10:41.332 CET [32382] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:10:41.332 CET [32382] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:11:09.833 CET [32466] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:11:09.833 CET [32466] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:11:09.833 CET [32466] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:11:09.843 CET [32466] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:11:09.843 CET [32466] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:11:09.843 CET [32466] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:12:12.333 CET [32509] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:12:12.333 CET [32509] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:12:12.333 CET [32509] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:12:12.335 CET [32509] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:12:12.335 CET [32509] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:12:12.335 CET [32509] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:12:12.383 CET [32513] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:12:12.383 CET [32513] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:12:12.383 CET [32513] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:12:12.385 CET [32513] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:12:12.385 CET [32513] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:12:12.385 CET [32513] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:12:53.246 CET [32600] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:12:53.246 CET [32600] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:12:53.246 CET [32600] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:12:53.254 CET [32600] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:12:53.254 CET [32600] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:12:53.254 CET [32600] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:13:46.757 CET [29234] ERROR:  column "tru" does not exist at character 33
+2020-01-08 15:13:46.757 CET [29234] STATEMENT:  SELECT * FROM tiles WHERE mined="tru";
+2020-01-08 15:13:55.647 CET [29234] ERROR:  column "true" does not exist at character 33
+2020-01-08 15:13:55.647 CET [29234] STATEMENT:  SELECT * FROM tiles WHERE mined="true";
+2020-01-08 15:17:33.644 CET [315] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:17:33.644 CET [315] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:17:33.644 CET [315] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:17:33.647 CET [315] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:17:33.647 CET [315] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:17:33.647 CET [315] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:17:33.758 CET [322] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:17:33.758 CET [322] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:17:33.758 CET [322] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:17:33.760 CET [322] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:17:33.760 CET [322] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:17:33.760 CET [322] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:18:05.065 CET [404] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:18:05.065 CET [404] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:18:05.065 CET [404] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:18:05.077 CET [404] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:18:05.077 CET [404] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:18:05.077 CET [404] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:18:25.836 CET [465] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fklg90eqvdp720pp2bn71duojum"
+2020-01-08 15:18:25.836 CET [465] DETAIL:  Key (tiles_id)=(110) is not present in table "tiles".
+2020-01-08 15:18:25.836 CET [465] STATEMENT:  alter table "game_tiles" add constraint FKlg90eqvdp720pp2bn71duojum foreign key ("tiles_id") references "tiles"
+2020-01-08 15:18:25.845 CET [465] ERROR:  insert or update on table "game_tiles" violates foreign key constraint "fki1qwuqiy9psrf4bxuvywc89tp"
+2020-01-08 15:18:25.845 CET [465] DETAIL:  Key (game_id)=(210) is not present in table "game".
+2020-01-08 15:18:25.845 CET [465] STATEMENT:  alter table "game_tiles" add constraint FKi1qwuqiy9psrf4bxuvywc89tp foreign key ("game_id") references "game"
+2020-01-08 15:19:26.029 CET [524] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-08 15:19:26.029 CET [524] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-08 15:21:09.357 CET [591] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-08 15:21:09.357 CET [591] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1

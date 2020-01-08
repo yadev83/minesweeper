@@ -1,5 +1,6 @@
 package fr.yadev.minesweeper.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import fr.yadev.minesweeper.form.GameForm;
 import fr.yadev.minesweeper.model.Game;
 import fr.yadev.minesweeper.model.GameMode;
+import fr.yadev.minesweeper.model.Tile;
 import fr.yadev.minesweeper.repository.GameModeRepository;
 import fr.yadev.minesweeper.repository.GameRepository;
 
@@ -19,6 +21,9 @@ public class GameService {
 	
 	@Autowired
 	private GameModeRepository gamemodes;
+	
+	@Autowired
+	private TileService tile_service;
 	
 	public String startGame() {
 		List<Game> game_list = games.findAll();
@@ -48,6 +53,18 @@ public class GameService {
 		game.setGamemode(gamemode);
 		game.setPlaying(true);
 		game.setScore(0L);
+		
+		List<Tile> tiles = new ArrayList<>();
+		
+		for(Long i = 0L; i < gamemode.getWidth(); ++i) {
+			for(Long j = 0L; j < gamemode.getHeight(); ++j) {
+				tiles.add(tile_service.createTile(i, j));
+			}
+		}
+		
+		tile_service.mineField(tiles, gamemode.getNbMines());
+		
+		game.setTiles(tiles);
 		
 		games.save(game);
 		
