@@ -1,0 +1,23 @@
+table.gameplate{
+	width: 100%;
+	height: 100%;
+}
+
+tr.gameplate_row{
+	height: 25px;
+}
+
+td.gameplate_cell{
+	width: 25px;
+}
+
+a.tile{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+a.tile button{
+	width: 100%;
+	height: 25px;
+}

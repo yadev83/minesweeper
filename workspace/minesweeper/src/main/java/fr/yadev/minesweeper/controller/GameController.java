@@ -43,7 +43,8 @@ public class GameController {
 	
 	@GetMapping("/game/{id}")
 	public String play(@PathVariable(required = true) Long id, Model model) {
-		return "";
+		service.game(id, model);
+		return "game";
 	}
 	
 	@PostMapping("/create")

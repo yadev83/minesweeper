@@ -48,6 +48,10 @@ public class GameService {
 		model.addAttribute("gamemodes", gamemodes.findAll());
 	}
 	
+	public void game(Long id, Model model) {
+		model.addAttribute("gamemode", games.findById(id).get().getGamemode());
+	}
+	
 	public Game initGame(GameMode gamemode) {
 		Game game = new Game();
 		game.setGamemode(gamemode);
