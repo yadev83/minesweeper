@@ -28,6 +28,9 @@ public class Game {
 	@Column(nullable = false)
 	private boolean playing;
 	
+	@Column(nullable = false)
+	private int mode;
+	
 	@OneToMany
 	private List<Tile> Tiles;
 	

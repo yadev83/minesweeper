@@ -1,6 +1,7 @@
 package fr.yadev.minesweeper.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -14,6 +15,20 @@ import fr.yadev.minesweeper.repository.TileRepository;
 public class TileService {
 	@Autowired
 	private TileRepository tiles;
+	
+	public Comparator<Tile> compareByPosX = new Comparator<Tile>() {
+	    @Override
+	    public int compare(Tile t1, Tile t2) {
+	        return t1.getPos_x().compareTo(t2.getPos_x());
+	    }
+	};
+	
+	public Comparator<Tile> compareByPosY = new Comparator<Tile>() {
+	    @Override
+	    public int compare(Tile t1, Tile t2) {
+	        return t1.getPos_y().compareTo(t2.getPos_y());
+	    }
+	};
 	
 	public Tile createTile(Long pos_x, Long pos_y) {
 		Tile tile = new Tile();
@@ -46,4 +61,6 @@ public class TileService {
 		
 		return tileset;
 	}
+	
+
 }

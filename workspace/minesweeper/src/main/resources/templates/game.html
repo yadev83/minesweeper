@@ -9,15 +9,27 @@
 			<h1>Minesweeper - <span th:text=${gamemode.title}>difficulty_placeholder</span></h1>
 			<p>
 				<a th:href="@{/}" class="btn btn-secondary" role="button" aria-pressed="true">Retour</a>
+				<a th:href="@{/play/swap/}+*{id}" class="btn btn-secondary" role="button" aria-pressed="true">
+					<span th:if="*{mode==1}">Mode Drapeau</span>
+					<span th:if="*{mode==-1}">Mode Découverte</span>
+				</a>
+				<a th:href="@{/play/reset}" class="btn btn-danger" style="float:right;" role="button" aria-pressed="true">Abandonner</a>
 			</p>
 			<table class="gameplate">
-				<tr class="gameplate_row" th:each="i : ${#numbers.sequence(0, __${gamemode.width}__-1)}">
-					<td class="gameplate_cell" th:each="j : ${#numbers.sequence(0, __${gamemode.height}__-1)}">
-						<a class="tile" th:href="@{/play/game/}+*{id}+@{/}+*{i}+@{/}+*{j}"><button></button></a>
+				<tr class="gameplate_row" th:each="i : ${#numbers.sequence(0, __${gamemode.height}__-1)}">
+					<td class="gameplate_cell" th:each="j : ${#numbers.sequence(0, __${gamemode.width}__-1)}" th:switch="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}">
+						<a class="tile" th:href="@{/play/game/}+*{id}+@{/}+*{mode}+@{/}+*{j}+@{/}+*{i}">
+							<button>
+									<span th:case="'-2'"></span>
+									<span class="oi oi-sun" th:case="'-3'"></span>
+									<span class="oi oi-flag" th:case="'-1'"></span>
+									<span th:case="*" th:text="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}"></span>
+							</button>
+						</a>
 					</td>
 				</tr>
 			</table>
-			<br />
+			<br /><br /><br /><br />
 		</div>
 	</body>
 </html>

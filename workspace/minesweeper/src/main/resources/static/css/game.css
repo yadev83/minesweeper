@@ -1,14 +1,17 @@
 table.gameplate{
 	width: 100%;
 	height: 100%;
+	border: 1px solid black;
 }
 
 tr.gameplate_row{
 	height: 25px;
+	border: 1px solid black;
 }
 
 td.gameplate_cell{
 	width: 25px;
+	border: 1px solid black;
 }
 
 a.tile{

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.yadev.minesweeper.form.GameForm;
 import fr.yadev.minesweeper.model.Game;
+import fr.yadev.minesweeper.model.Tile;
 import fr.yadev.minesweeper.services.GameService;
-import fr.yadev.minesweeper.services.MinesweeperGameService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +26,6 @@ import lombok.Setter;
 public class GameController {
 	@Autowired
 	private GameService service;
-	
-	@Autowired 
-	private MinesweeperGameService ms_game;
 	
 	@GetMapping("/start")
 	public String start(Model model) {	
@@ -41,10 +38,33 @@ public class GameController {
 		return "create_game";
 	}
 	
+	@GetMapping("/reset")
+	public String reset(Model model) {
+		service.stopGame();
+		return "redirect:/play/create";
+	}
+	
 	@GetMapping("/game/{id}")
 	public String play(@PathVariable(required = true) Long id, Model model) {
 		service.game(id, model);
 		return "game";
+	}
+	
+	@GetMapping("/game/{id}/{mode}/{posx}/{posy}")
+	public String handleTile(@PathVariable(required = true) Long id, @PathVariable(required=true) Long mode, @PathVariable(required = true) Long posx, @PathVariable(required = true) Long posy, Model model) {
+		Tile tile = service.getTile(id, posx, posy);
+		Game game = service.getGame(id);
+		if(mode == 1)
+			service.processTile(game, tile, model);
+		else if(mode == -1)
+			service.flagTile(game, tile, model);
+		return "redirect:/play/game/"+id;
+	}
+	
+	@GetMapping("/swap/{id}")
+	public String changeMode(@PathVariable(required=true) Long id, Model model) {
+		service.swapMode(service.getGame(id));
+		return "redirect:/play/game/"+id;
 	}
 	
 	@PostMapping("/create")

@@ -1,6 +1,8 @@
 package fr.yadev.minesweeper.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import fr.yadev.minesweeper.model.GameMode;
 import fr.yadev.minesweeper.model.Tile;
 import fr.yadev.minesweeper.repository.GameModeRepository;
 import fr.yadev.minesweeper.repository.GameRepository;
+import fr.yadev.minesweeper.repository.TileRepository;
 
 @Service
 public class GameService {
@@ -23,11 +26,17 @@ public class GameService {
 	private GameModeRepository gamemodes;
 	
 	@Autowired
+	private TileRepository tiles;
+	
+	@Autowired
 	private TileService tile_service;
+	
+	private String mode;
 	
 	public String startGame() {
 		List<Game> game_list = games.findAll();
 		Long game_id = -1L;
+		mode = "discover";
 		for(Game game : game_list) {
 			if(game.isPlaying()) {
 				game_id = game.getId();
@@ -48,8 +57,21 @@ public class GameService {
 		model.addAttribute("gamemodes", gamemodes.findAll());
 	}
 	
+	public void stopGame() {
+		for(Game game : games.findAll()) {
+			if(game.isPlaying())
+				game.setPlaying(false);
+		}
+		games.saveAll(games.findAll());
+	}
+	
 	public void game(Long id, Model model) {
+		List<Tile> tiles = getGame(id).getTiles();
+		Collections.sort(tiles, tile_service.compareByPosX);
+		Collections.sort(tiles, tile_service.compareByPosY);
 		model.addAttribute("gamemode", games.findById(id).get().getGamemode());
+		model.addAttribute("tiles", tiles);
+		model.addAttribute("mode", games.findById(id).get().getMode());
 	}
 	
 	public Game initGame(GameMode gamemode) {
@@ -57,6 +79,7 @@ public class GameService {
 		game.setGamemode(gamemode);
 		game.setPlaying(true);
 		game.setScore(0L);
+		game.setMode(1);
 		
 		List<Tile> tiles = new ArrayList<>();
 		
@@ -73,5 +96,130 @@ public class GameService {
 		games.save(game);
 		
 		return game;
+	}
+	
+	public Game getGame(Long id) {
+		return games.getOne(id);
+	}
+	
+	public void swapMode(Game game) {
+		Game update = games.getOne(game.getId());
+		update.setMode(update.getMode() * (-1));
+		games.save(update);
+	}
+	
+	public Tile getTile(Long game_id, Long posx, Long posy) {
+		Collections.sort(getGame(game_id).getTiles(), tile_service.compareByPosX);
+		Collections.sort(getGame(game_id).getTiles(), tile_service.compareByPosY);
+		
+		Object[] array = games.getOne(game_id).getTiles().toArray();
+		for(int i = 0; i < games.getOne(game_id).getTiles().size(); ++i) {
+			if(posx == ((Tile) array[i]).getPos_x() && posy == ((Tile) array[i]).getPos_y()) {
+				System.out.println("Index : " + i + " | " + ((Tile) array[i]).getPos_x() + " " + ((Tile) array[i]).getPos_y());
+				if(((Tile) array[i]).isMined())
+					System.out.println("MINE");
+				return (Tile) array[i];
+			}
+		}
+		
+		/*for(Tile tile : games.getOne(game_id).getTiles()) {
+			//System.out.println(tile.getPos_x() + " " + tile.getPos_y());
+			if(posx == tile.getPos_x() && posy == tile.getPos_y()) {
+				//System.out.println("yes");
+				return tile;
+			}
+		}*/
+		
+		return null;
+	}
+	
+	public void flagTile(Game game, Tile tile, Model model) {
+		Tile update = tiles.getOne(tile.getId());
+		if(update.getState() != -1) {
+			update.setState(-1);
+			System.out.println("ALED");
+		}else if(update.getState() == -1){
+			update.setState(-2);
+		}
+		tiles.save(update);
+	}
+	
+	public void processTile(Game game, Tile tile, Model model) {
+		Tile update = tiles.getOne(tile.getId());
+		Long posx = update.getPos_x();
+		Long posy = update.getPos_y();
+		//System.out.println("Updated tile with id " + update.getId() + " at pos " + update.getPos_x() + ", " + update.getPos_y());
+
+		if(update.getState() == -2) {
+			if(update.isMined()) {
+				update.setState(-3);
+				tiles.save(update);
+			}else {
+				int mineNb = getNumberOfCloseMines(game, update, model);
+				update.setState(mineNb);
+				tiles.save(update);
+				if(mineNb == 0) {
+					propagation(game, getTile(game.getId(), posx-1, posy), model);
+					propagation(game, getTile(game.getId(), posx+1, posy), model);
+					propagation(game, getTile(game.getId(), posx, posy-1), model);
+					propagation(game, getTile(game.getId(), posx, posy+1), model);
+				}	
+			}
+		}
+	}
+	
+	private void propagation(Game game, Tile tile, Model model) {
+		if(tile != null) {
+			if(!tile.isMined()) {
+				processTile(game, tile, model);
+			}
+		}	
+	}
+	
+	private int getNumberOfCloseMines(Game game, Tile tileToProcess, Model model) {
+		int nbMines = 0;
+		Tile tile = tiles.getOne(tileToProcess.getId());
+		Long posx = tile.getPos_x();
+		Long posy = tile.getPos_y();
+		
+		if(posy-1 >= 0) {
+			if(getTile(game.getId(), posx, posy-1).isMined())
+				++nbMines;
+		}
+		
+		if(posy+1 < game.getGamemode().getHeight()) {
+			if(getTile(game.getId(), posx, posy+1).isMined())
+				++nbMines;
+		}
+		
+		if(posx-1 >= 0) {
+			if(getTile(game.getId(), posx-1, posy).isMined())
+				++nbMines;
+			if(posy-1 >= 0) {
+				if(getTile(game.getId(), posx-1, posy-1).isMined())
+					++nbMines;
+				
+			}
+			if(posy+1 < game.getGamemode().getHeight()) {
+				if(getTile(game.getId(), posx-1, posy+1).isMined())
+					++nbMines;
+			}
+		}
+		
+		if(posx+1 < game.getGamemode().getWidth()) {
+			if(getTile(game.getId(), posx+1, posy).isMined())
+				++nbMines;
+			if(posy-1 >= 0) {
+				if(getTile(game.getId(), posx+1, posy-1).isMined())
+					++nbMines;
+				
+			}
+			if(posy+1 < game.getGamemode().getHeight()) {
+				if(getTile(game.getId(), posx+1, posy+1).isMined())
+					++nbMines;
+			}
+		}
+		
+		return nbMines;
 	}
 }

@@ -671,3 +671,54 @@
 2020-01-08 15:19:26.029 CET [524] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
 2020-01-08 15:21:09.357 CET [591] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
 2020-01-08 15:21:09.357 CET [591] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-09 08:51:19.921 CET [3150] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-09 08:51:19.942 CET [3150] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-09 08:51:19.942 CET [3150] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-09 08:51:20.020 CET [3150] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-09 08:51:20.189 CET [3152] LOG:  database system was interrupted; last known up at 2020-01-08 18:48:53 CET
+2020-01-09 08:51:21.222 CET [3152] LOG:  database system was not properly shut down; automatic recovery in progress
+2020-01-09 08:51:21.268 CET [3152] FATAL:  could not open directory "pg_stat": Aucun fichier ou dossier de ce type
+2020-01-09 08:51:21.269 CET [3150] LOG:  startup process (PID 3152) exited with exit code 1
+2020-01-09 08:51:21.269 CET [3150] LOG:  aborting startup due to startup process failure
+2020-01-09 08:51:21.272 CET [3150] LOG:  database system is shut down
+2020-01-09 08:51:43.900 CET [3163] LOG:  starting PostgreSQL 12.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 8.3.0-6ubuntu1) 8.3.0, 64-bit
+2020-01-09 08:51:43.901 CET [3163] LOG:  listening on IPv6 address "::1", port 5432
+2020-01-09 08:51:43.901 CET [3163] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-01-09 08:51:43.979 CET [3163] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-01-09 08:51:44.103 CET [3164] LOG:  database system was shut down at 2020-01-09 08:51:40 CET
+2020-01-09 08:51:44.189 CET [3163] LOG:  database system is ready to accept connections
+2020-01-09 11:08:56.417 CET [11730] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 11:08:56.417 CET [11730] DETAIL:  Key (tiles_id)=(1322) already exists.
+2020-01-09 11:08:56.417 CET [11730] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 11:35:32.000 CET [13533] LOG:  incomplete message from client
+2020-01-09 11:35:32.000 CET [13533] ERROR:  out of memory
+2020-01-09 11:35:32.000 CET [13533] DETAIL:  Cannot enlarge string buffer containing 0 bytes by 1342177276 more bytes.
+2020-01-09 11:36:17.334 CET [13595] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 11:36:17.334 CET [13595] DETAIL:  Key (tiles_id)=(2477) already exists.
+2020-01-09 11:36:17.334 CET [13595] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 11:39:39.397 CET [13715] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 11:39:39.397 CET [13715] DETAIL:  Key (tiles_id)=(2679) already exists.
+2020-01-09 11:39:39.397 CET [13715] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 11:45:52.840 CET [13924] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 11:45:52.840 CET [13924] DETAIL:  Key (tiles_id)=(3285) already exists.
+2020-01-09 11:45:52.840 CET [13924] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 13:46:45.538 CET [17529] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 13:46:45.538 CET [17529] DETAIL:  Key (tiles_id)=(4333) already exists.
+2020-01-09 13:46:45.538 CET [17529] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 14:01:54.145 CET [18487] ERROR:  duplicate key value violates unique constraint "uk_fngnp9hf29bmqldgefy0n1lu1"
+2020-01-09 14:01:54.145 CET [18487] DETAIL:  Key (tiles_id)=(4942) already exists.
+2020-01-09 14:01:54.145 CET [18487] STATEMENT:  insert into "game_tiles" ("game_id", "tiles_id") values ($1, $2)
+2020-01-09 14:18:54.308 CET [19606] ERROR:  column "mode" contains null values
+2020-01-09 14:18:54.308 CET [19606] STATEMENT:  alter table "game" add column mode int4 not null
+2020-01-09 14:18:59.366 CET [19647] ERROR:  column "mode" contains null values
+2020-01-09 14:18:59.366 CET [19647] STATEMENT:  alter table "game" add column mode int4 not null
+2020-01-09 14:19:15.414 CET [19695] ERROR:  column "mode" contains null values
+2020-01-09 14:19:15.414 CET [19695] STATEMENT:  alter table "game" add column mode int4 not null
+2020-01-09 14:20:29.633 CET [19755] ERROR:  column "mode" contains null values
+2020-01-09 14:20:29.633 CET [19755] STATEMENT:  alter table "game" add column mode int4 not null
+2020-01-09 14:20:34.060 CET [19755] ERROR:  column "mode" of relation "game" does not exist at character 36
+2020-01-09 14:20:34.060 CET [19755] STATEMENT:  insert into "game" ("gamemode_id", mode, playing, score, id) values ($1, $2, $3, $4, $5)
+2020-01-09 14:20:48.476 CET [19755] ERROR:  column "mode" of relation "game" does not exist at character 36
+2020-01-09 14:20:48.476 CET [19755] STATEMENT:  insert into "game" ("gamemode_id", mode, playing, score, id) values ($1, $2, $3, $4, $5)
+2020-01-09 14:22:05.717 CET [19876] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-09 14:22:05.717 CET [19876] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1

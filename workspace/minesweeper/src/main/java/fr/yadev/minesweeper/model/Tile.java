@@ -26,7 +26,7 @@ public class Tile {
 	
 	@Column
 	private int state;
-	//State can be : -2 (covered) | -1 (flagged) | 0 - 8 ( discovered + nb of close mines)	
+	//State can be : -3 (mined discovered) | -2 (covered) | -1 (flagged) | 0 - 8 ( discovered + nb of close mines)	
 	
 	@Column
 	private boolean mined;
