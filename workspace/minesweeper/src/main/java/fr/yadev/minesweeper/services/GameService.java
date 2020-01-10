@@ -72,6 +72,7 @@ public class GameService {
 		model.addAttribute("gamemode", games.findById(id).get().getGamemode());
 		model.addAttribute("tiles", tiles);
 		model.addAttribute("mode", games.findById(id).get().getMode());
+		model.addAttribute("gameover", isGameOver(games.findById(id).get()));
 	}
 	
 	public Game initGame(GameMode gamemode) {
@@ -96,6 +97,24 @@ public class GameService {
 		games.save(game);
 		
 		return game;
+	}
+	
+	public int isGameOver(Game game) {
+		List<Tile> tiles = game.getTiles();
+		int covered = 0;
+		for(Tile tile : tiles) {
+			if(tile.getState() == -3) {
+				return -1;
+			}else if(tile.getState() == -2 || tile.getState() == -1) {
+				++covered;
+			}
+		}
+		
+		if(covered == game.getGamemode().getNbMines()) {
+			return 1;
+		}
+		
+		return 0;
 	}
 	
 	public Game getGame(Long id) {
@@ -135,13 +154,13 @@ public class GameService {
 	
 	public void flagTile(Game game, Tile tile, Model model) {
 		Tile update = tiles.getOne(tile.getId());
-		if(update.getState() != -1) {
+		if(update.getState() == -2) {
 			update.setState(-1);
-			System.out.println("ALED");
+			tiles.save(update);
 		}else if(update.getState() == -1){
 			update.setState(-2);
+			tiles.save(update);
 		}
-		tiles.save(update);
 	}
 	
 	public void processTile(Game game, Tile tile, Model model) {
