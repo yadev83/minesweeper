@@ -1,8 +1,9 @@
 package fr.yadev.minesweeper.services;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.ui.Model;
 import fr.yadev.minesweeper.form.GameForm;
 import fr.yadev.minesweeper.model.Game;
 import fr.yadev.minesweeper.model.GameMode;
+import fr.yadev.minesweeper.model.Score;
 import fr.yadev.minesweeper.model.Tile;
 import fr.yadev.minesweeper.repository.GameModeRepository;
 import fr.yadev.minesweeper.repository.GameRepository;
+import fr.yadev.minesweeper.repository.ScoreRepository;
 import fr.yadev.minesweeper.repository.TileRepository;
 
 @Service
@@ -26,17 +29,21 @@ public class GameService {
 	private GameModeRepository gamemodes;
 	
 	@Autowired
+	private ScoreRepository scores;
+	
+	@Autowired
 	private TileRepository tiles;
 	
 	@Autowired
 	private TileService tile_service;
 	
-	private String mode;
+	public List<GameMode> getGamemodes(){
+		return gamemodes.findAll();
+	}
 	
 	public String startGame() {
 		List<Game> game_list = games.findAll();
 		Long game_id = -1L;
-		mode = "discover";
 		for(Game game : game_list) {
 			if(game.isPlaying()) {
 				game_id = game.getId();
@@ -69,18 +76,30 @@ public class GameService {
 		List<Tile> tiles = getGame(id).getTiles();
 		Collections.sort(tiles, tile_service.compareByPosX);
 		Collections.sort(tiles, tile_service.compareByPosY);
+		
+		int nbFlag = 0;
+		for(Tile tile : tiles) {
+			if(tile.getState() == -1) {
+				++nbFlag;
+			}
+		}
+		model.addAttribute("nbFlag", nbFlag);
+		
+		model.addAttribute("name", games.findById(id).get().getPlayer_name());
 		model.addAttribute("gamemode", games.findById(id).get().getGamemode());
 		model.addAttribute("tiles", tiles);
 		model.addAttribute("mode", games.findById(id).get().getMode());
 		model.addAttribute("gameover", isGameOver(games.findById(id).get()));
 	}
 	
-	public Game initGame(GameMode gamemode) {
+	public Game initGame(GameMode gamemode, String playerName) {
 		Game game = new Game();
 		game.setGamemode(gamemode);
 		game.setPlaying(true);
 		game.setScore(0L);
 		game.setMode(1);
+		game.setPlayer_name(playerName);
+		game.setStartTime(Instant.now());
 		
 		List<Tile> tiles = new ArrayList<>();
 		
@@ -98,7 +117,7 @@ public class GameService {
 		
 		return game;
 	}
-	
+
 	public int isGameOver(Game game) {
 		List<Tile> tiles = game.getTiles();
 		int covered = 0;
@@ -109,8 +128,13 @@ public class GameService {
 				++covered;
 			}
 		}
-		
+
 		if(covered == game.getGamemode().getNbMines()) {
+			Score score = new Score();
+			score.setUsername(game.getPlayer_name());
+			score.setTime(Instant.now().getEpochSecond()-game.getStartTime().getEpochSecond());
+			score.setGamemode(game.getGamemode());
+			scores.save(score);
 			return 1;
 		}
 		
@@ -154,7 +178,17 @@ public class GameService {
 	
 	public void flagTile(Game game, Tile tile, Model model) {
 		Tile update = tiles.getOne(tile.getId());
-		if(update.getState() == -2) {
+		
+		int nbFlag = 0;
+		for(Tile t : game.getTiles()) {
+			if(t.getState() == -1) {
+				++nbFlag;
+			}
+		}
+		
+		System.out.println(nbFlag);
+		
+		if(nbFlag != game.getGamemode().getNbMines() && update.getState() == -2) {
 			update.setState(-1);
 			tiles.save(update);
 		}else if(update.getState() == -1){

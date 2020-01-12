@@ -13,10 +13,14 @@
 		<p>
 			<a th:href="@{/}" class="btn btn-secondary" role="button"
 				aria-pressed="true">Retour</a> <a th:href="@{/play/swap/}+*{id}"
-				class="btn btn-secondary" role="button" aria-pressed="true"> <span
-				th:if="*{mode==1}">Mode Drapeau</span> <span th:if="*{mode==-1}">Mode
-					Découverte</span>
-			</a> <a th:href="@{/play/reset}" class="btn btn-danger"
+				class="btn btn-secondary" role="button" aria-pressed="true">
+				<span th:if="*{mode==1}">Mode Drapeau</span> <span
+				th:if="*{mode==-1}">Mode Découverte</span>
+			</a> 
+			<span th:text="${name}">playe_name_placeholder</span> | 
+			<span th:if="${gamemode.nbMines}-${nbFlag} >= 0" th:text="${gamemode.nbMines}-${nbFlag}"></span> Bombes restantes
+			<span th:text="${time}"></span>
+			<a th:href="@{/play/reset}" class="btn btn-danger"
 				style="float: right;" role="button" aria-pressed="true">Abandonner</a>
 		</p>
 		<table class="gameplate">
@@ -27,12 +31,12 @@
 					th:switch="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}">
 					<a class="tile"
 					th:href="@{/play/game/}+*{id}+@{/}+*{mode}+@{/}+*{j}+@{/}+*{i}">
-						<button>
-							<span th:case="'-2'"></span> <span class="oi oi-sun"
-								th:case="'-3'"></span> <span class="oi oi-flag" th:case="'-1'"></span>
-							<span th:case="*"
-								th:text="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}"></span>
-						</button>
+						<div>
+							<span th:case="'-2'"></span> 
+							<span class="bomb" th:case="'-3'"><i class="oi oi-sun"></i></span> 
+							<span class="flagged" th:case="'-1'"><i class="oi oi-flag"></i></span>	
+							<span class="discovered" th:case="*" th:text="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}"></span>
+						</div>
 				</a>
 				</td>
 			</tr>
@@ -42,7 +46,7 @@
 			<div class="modal fade show" id="end_game_modal" tabindex="-1"
 				role="dialog" aria-labelledby="end_game_modal_title"
 				style="display: block; padding-right: 7px;" aria-modal="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-dialog modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="end_game_modal_title">Partie
@@ -58,12 +62,11 @@
 					</div>
 				</div>
 			</div>
-		</span> 
-		<span th:if="*{gameover==1}">
+		</span> <span th:if="*{gameover==1}">
 			<div class="modal fade show" id="end_game_modal" tabindex="-1"
 				role="dialog" aria-labelledby="end_game_modal_title"
 				style="display: block; padding-right: 7px;" aria-modal="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-dialog modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="end_game_modal_title">Partie
@@ -79,8 +82,7 @@
 					</div>
 				</div>
 			</div>
-		</span> 
-		<br /> <br /> <br /> <br />
+		</span> <br /> <br /> <br /> <br />
 	</div>
 </body>
 </html>

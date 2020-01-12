@@ -10,6 +10,7 @@
 			<p>
 				<a th:href="@{/gamemode/list}" class="btn btn-secondary" role="button" aria-pressed="true">Retour</a>
 			</p>
+			<div class="alert alert-danger" th:if="${errM!=null}" th:text="${errM}"></div>
 			<form action="#" th:action="@{/gamemode/add}" th:object=${gamemode} method="post">
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">

@@ -14,12 +14,14 @@
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 					<label for="gamemode">Mode de jeu</label><br />
-					<select name="gamemode" size="5">
-						<option th:each="gm : ${gamemodes}" th:value="${gm.id}" th:text="${gm.title}"></option>
+					<select name="gamemode" size="6">
+						<option th:each="gm : ${gamemodes}" th:if="${gm.deleted}==false" th:value="${gm.id}" th:text="${gm.title}"></option>
 					</select>
 					<br />
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('gamemode')}" th:errors="*{gamemode}">Err gamemode</div>
-					
+					<label for="playerName">Pseudo</label><br />
+					<input type="text" name="player_name" placeholder="Gérard" />
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('player_name')}" th:errors="*{player_name}">Err playername</div>
 					</div>
 				
 				<button type="submit" class="btn btn-primary">Jouer !</button>

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -20,6 +21,9 @@ public class Score {
 	
 	@Column(nullable = false)
 	private String username;
+	
+	@ManyToOne
+	private GameMode gamemode;
 	
 	@Column(nullable = false)
 	private Long time;

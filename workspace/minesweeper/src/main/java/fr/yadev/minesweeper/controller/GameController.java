@@ -54,6 +54,7 @@ public class GameController {
 	public String handleTile(@PathVariable(required = true) Long id, @PathVariable(required=true) Long mode, @PathVariable(required = true) Long posx, @PathVariable(required = true) Long posy, Model model) {
 		Tile tile = service.getTile(id, posx, posy);
 		Game game = service.getGame(id);
+		System.out.println(model.getAttribute("nbFlag"));
 		if(mode == 1)
 			service.processTile(game, tile, model);
 		else if(mode == -1)
@@ -69,12 +70,13 @@ public class GameController {
 	
 	@PostMapping("/create")
 	public String createForm(@Valid @ModelAttribute("game") GameForm form, BindingResult result, Model model) {
-		if(result.hasErrors()) {
+		if(result.hasErrors() || form.getGamemode() == null) {
 			model.addAttribute("game", form);
+			model.addAttribute("gamemodes", service.getGamemodes());
 			return "create_game";
 		}
 		
-		Game game = service.initGame(form.getGamemode());
+		Game game = service.initGame(form.getGamemode(), form.getPlayer_name());
 		
 		return "redirect:/play/game/"+game.getId();
 	}

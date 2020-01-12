@@ -10,6 +10,8 @@
 			<p th:if="${content_msg} != null">
 				<span th:text="${content_msg}">content_text_placeholder</span>
 			</p>
+			
+			<p th:each="score : ${scores}" th:text="${score.time}"></p>
 		</div>
 	</body>
 </html>
