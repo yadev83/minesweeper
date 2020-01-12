@@ -24,7 +24,14 @@ public class GameModeService {
 			old.setDeleted(true);
 		}
 		
-		gm.setTitle(title);
+		int cpt = 1;
+		String new_title = title;
+		while(!isTitleAvailable(new_title)) {
+			new_title = title + "_" + cpt;
+			++cpt;
+		}
+		
+		gm.setTitle(new_title);
 		gm.setHeight(height);
 		gm.setWidth(width);
 		gm.setNbMines(nbMines);
@@ -33,6 +40,17 @@ public class GameModeService {
 		gamemodes.save(gm);
 		
 		return gm;
+	}
+	
+	private boolean isTitleAvailable(String toTest) {
+		List<GameMode> gm = gamemodes.findAll();
+		for(GameMode g : gm) {
+			if(toTest.equalsIgnoreCase(g.getTitle())) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	public GameModeForm getGameModeForm(Long id) {

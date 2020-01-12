@@ -1116,3 +1116,23 @@
 2020-01-10 18:58:25.916 CET [5038] STATEMENT:  alter table "high_scores" add constraint FKogeiw7rcavi7bsaorxtrw05on foreign key ("gamemode_id") references "game_modes"
 2020-01-10 18:58:57.969 CET [5092] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
 2020-01-10 18:58:57.969 CET [5092] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-12 16:51:23.387 CET [16309] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-12 16:51:23.387 CET [16309] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-12 16:51:23.437 CET [16309] ERROR:  constraint "uk_jks0bfdevp0cj5ma6jsyd41vl" of relation "game_modes" does not exist
+2020-01-12 16:51:23.437 CET [16309] STATEMENT:  alter table "game_modes" drop constraint UK_jks0bfdevp0cj5ma6jsyd41vl
+2020-01-12 16:54:53.863 CET [16244] ERROR:  duplicate key value violates unique constraint "uk_jks0bfdevp0cj5ma6jsyd41vl"
+2020-01-12 16:54:53.863 CET [16244] DETAIL:  Key (title)=(Facile) already exists.
+2020-01-12 16:54:53.863 CET [16244] STATEMENT:  insert into "game_modes" (deleted, height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5, $6)
+2020-01-12 17:06:29.266 CET [17222] ERROR:  duplicate key value violates unique constraint "uk_jks0bfdevp0cj5ma6jsyd41vl"
+2020-01-12 17:06:29.266 CET [17222] DETAIL:  Key (title)=(Normal) already exists.
+2020-01-12 17:06:29.266 CET [17222] STATEMENT:  insert into "game_modes" (deleted, height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5, $6)
+2020-01-12 17:07:08.910 CET [17281] ERROR:  duplicate key value violates unique constraint "uk_jks0bfdevp0cj5ma6jsyd41vl"
+2020-01-12 17:07:08.910 CET [17281] DETAIL:  Key (title)=(Normal) already exists.
+2020-01-12 17:07:08.910 CET [17281] STATEMENT:  insert into "game_modes" (deleted, height, nb_mines, title, width, id) values ($1, $2, $3, $4, $5, $6)
+2020-01-12 17:07:49.530 CET [17357] ERROR:  constraint "uk_fngnp9hf29bmqldgefy0n1lu1" of relation "game_tiles" does not exist
+2020-01-12 17:07:49.530 CET [17357] STATEMENT:  alter table "game_tiles" drop constraint UK_fngnp9hf29bmqldgefy0n1lu1
+2020-01-12 17:11:12.592 CET [28076] ERROR:  cannot drop table game_modes because other objects depend on it
+2020-01-12 17:11:12.592 CET [28076] DETAIL:  constraint fkt84xcsc0w1teuedyakhehd1hh on table game depends on table game_modes
+	constraint fkogeiw7rcavi7bsaorxtrw05on on table high_scores depends on table game_modes
+2020-01-12 17:11:12.592 CET [28076] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2020-01-12 17:11:12.592 CET [28076] STATEMENT:  DROP TABLE game_modes;
