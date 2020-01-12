@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::title}, ~{::content})}">
+<head>
+<title th:fragment="title">Minesweeper - Partie en cours</title>
+</head>
+
+<body>
+	<div th:fragment="content">
+		<h1>
+			Minesweeper - <span th:text=${gamemode.title}>difficulty_placeholder</span>
+		</h1>
+		<p>
+			<a th:href="@{/}" class="btn btn-secondary" role="button"
+				aria-pressed="true">Retour</a> <a th:href="@{/play/swap/}+*{id}"
+				class="btn btn-secondary" role="button" aria-pressed="true">
+				<span th:if="*{mode==1}">Mode Drapeau</span> <span
+				th:if="*{mode==-1}">Mode Découverte</span>
+			</a> 
+			<span th:text="${name}">playe_name_placeholder</span> | 
+			<span th:if="${gamemode.nbMines}-${nbFlag} >= 0" th:text="${gamemode.nbMines}-${nbFlag}"></span> Bombes restantes
+			<span th:text="${time}"></span>
+			<a th:href="@{/play/reset}" class="btn btn-danger"
+				style="float: right;" role="button" aria-pressed="true">Abandonner</a>
+		</p>
+		<table class="gameplate">
+			<tr class="gameplate_row"
+				th:each="i : ${#numbers.sequence(0, __${gamemode.height}__-1)}">
+				<td class="gameplate_cell"
+					th:each="j : ${#numbers.sequence(0, __${gamemode.width}__-1)}"
+					th:switch="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}">
+					<a class="tile"
+					th:href="@{/play/game/}+*{id}+@{/}+*{mode}+@{/}+*{j}+@{/}+*{i}">
+						<div>
+							<span th:case="'-2'"></span> 
+							<span class="bomb" th:case="'-3'"><i class="oi oi-sun"></i></span> 
+							<span class="flagged" th:case="'-1'"><i class="oi oi-flag"></i></span>	
+							<span class="discovered" th:case="*" th:text="${tiles[__*{i}__*__${gamemode.width}__+__*{j}__].state}"></span>
+						</div>
+				</a>
+				</td>
+			</tr>
+		</table>
+
+		<span th:if="*{gameover==-1}">
+			<div class="modal fade show" id="end_game_modal" tabindex="-1"
+				role="dialog" aria-labelledby="end_game_modal_title"
+				style="display: block; padding-right: 7px;" aria-modal="true">
+				<div class="modal-dialog modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="end_game_modal_title">Partie
+								terminée</h5>
+						</div>
+						<div class="modal-body">Vous avez tout fait péter.</div>
+						<div class="modal-footer">
+							<a th:href="@{/play/reset}">
+								<button type="button" class="btn btn-danger"
+									data-dismiss="modal">Terminer</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</span> <span th:if="*{gameover==1}">
+			<div class="modal fade show" id="end_game_modal" tabindex="-1"
+				role="dialog" aria-labelledby="end_game_modal_title"
+				style="display: block; padding-right: 7px;" aria-modal="true">
+				<div class="modal-dialog modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="end_game_modal_title">Partie
+								terminée</h5>
+						</div>
+						<div class="modal-body">Vous avez gagné</div>
+						<div class="modal-footer">
+							<a th:href="@{/play/reset}">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">Terminer</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</span> <br /> <br /> <br /> <br />
+	</div>
+</body>
+</html>

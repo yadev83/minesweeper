@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title}, ~{::content})}">
+	<head>
+		<title th:fragment="title">Minesweeper - Ajout d'un mode de jeu</title>
+	</head>
+	
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des modes de jeu</h1>
+			<p>
+				<a th:href="@{/gamemode/list}" class="btn btn-secondary" role="button" aria-pressed="true">Retour</a>
+			</p>
+			<div class="alert alert-danger" th:if="${errM!=null}" th:text="${errM}"></div>
+			<form action="#" th:action="@{/gamemode/add}" th:object=${gamemode} method="post">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<label for="title">Titre</label>
+					<input type="text" class="form-control" id="title" placeholder="Titre du mode de jeu" th:field="*{title}" />
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Err Title</div>
+					
+					<label for="width">Largeur</label>
+					<input type="number" class="form-control" id="width" placeholder="Largeur du tableau" th:field="*{width}" />
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('width')}" th:errors="*{width}">Err Width</div>
+					
+					<label for="height">Hauteur</label>
+					<input type="number" class="form-control" id="height" placeholder="Hauteur du tableau" th:field="*{height}" />
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('height')}" th:errors="*{height}">Err Height</div>
+	
+					<label for="nbMines">Mines</label>
+					<input type="number" class="form-control" id="nbMines" placeholder="Nombre de mines" th:field="*{nbMines}" />
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('nbMines')}" th:errors="*{nbMines}">Err Mines Number</div>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Valider !</button>
+			</form>
+		</div>
+	</body>
+</html>

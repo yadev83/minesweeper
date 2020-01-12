@@ -1,0 +1,124 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}"
+	xmlns:th="https://thymeleaf.org">
+<head>
+<title th:fragment="title">Minesweeper</title>
+</head>
+
+<body>
+	<div th:fragment="content">
+		<h1 th:text="${message}">Hello There</h1>
+
+		<p th:if="${content_msg} != null">
+			<span th:text="${content_msg}">content_text_placeholder</span>
+		</p>
+
+		<p>D'ici, vous pouvez facilement lancer une partie, contempler le
+			panthéon du démineur ou encore, créer de nombreux modes de jeu.</p>
+		<a class="btn btn-primary" data-toggle="collapse" href="#rules"
+			role="button" aria-expanded="false" aria-controls="collapseRules">Règles
+			/ aide </a> <a class="btn btn-primary" data-toggle="collapse"
+			href="#scores" role="button" aria-expanded="false"
+			aria-controls="collapseScores">Scores </a>
+		<div id="rules" class="collapse">
+			<hr />
+			<h2>Règles et Assistance</h2>
+			<hr />
+			<h5>Règles du jeu</h5>
+			<p>
+				Comment ? Vous ne connaissez pas les règles du démineur ? Voyons,
+				c'est très simple :<br />Une fois la partie créée, vous arriverez
+				devant un tableau de dimension donnée qu'il va falloir déminer. <br />
+			<center>
+				<img width="50%" src="images/rules_01.png">
+			</center>
+			Pour ce faire, vous possédez plusieurs outils. Tout d'abord, l'outil
+			découverte : Lorsque vous cliquez sur une case avec l'outil
+			découverte, vous révèlerez ce qu'il s'y cache, plusieurs cas sont
+			alors possibles.
+			<center>
+				<img width="50%" src="images/rules_02.png">
+			</center>
+			Premier cas de figure : Rien à signaler, la case est vide, et
+			sécurisée. Dans ce cas, toutes les cases vides à proximité seront
+			automatiquement découvertes elles aussi. Deuxième cas de figure : La
+			case est proche d'une ou plusieurs mines. Alors la case se dévoilera
+			et elle portera un chiffre. Ce chiffre indque le nombre de mines à
+			proximité. Troisième cas de figure : La case est minée ! Alors là,
+			c'est la méga catastrophe de la fin du monde. La partie s'arrête et
+			votre score n'est pas enregistré. Il faut éviter de cliquer sur les
+			cases qui contiennent des mines !
+			<center>
+				<img width="50%" src="images/rules_05.png">
+			</center>
+			<br /> Vient ensuite l'outil drapeau : Cet outil permet de signaler
+			une case en y plaçant un drapeau. Vous avez autant de drapeaux à
+			votre disposition qu'il y a de mines sur le terrain. Il est
+			impossible de découvrir une case sur laquelle se trouve un drapeau.
+			Lorsque vous pensez avoir trouvé une mine, posez un drapeau dessus
+			pour éviter de la faire exploser par inadvertance !
+			<center>
+				<img width="50%" src="images/rules_03.png">
+			</center>
+			<br /> Si vous arrivez à découvrir la totalité du terrain sans
+			toucher aux mines, alors la partie est gagné, elle s'arrêtera et
+			votre score sera enregistré.
+			<center>
+				<img width="50%" src="images/rules_04.png">
+			</center>
+			Si vous faites partie des 5 meilleurs pour votre mode de jeu, alors
+			vous apparaîtrez dans le Panthéon du démineur.
+			<center>
+				<img width="50%" src="images/rules_07.png">
+			</center>
+			</p>
+			<hr />
+			<h5>Aide à l'utilisation de l'Application</h5>
+			<p>Pour créer une partie, rien de plus simple, cliquez sur le
+				bouton "Jouer" du menu de navigation, choisissez un mode de jeu,
+				puis un pseudonyme et enfin cliquez sur "Jouer". La partie se lance
+				et est chronométrée, alors ne perdez pas plus de temps et trouvez
+				toutes les mines pour l'emporter !
+			<center>
+				<img width="50%" src="images/rules_06.png">
+			</center>
+			<br />Si vous souhaitez ajouter un mode de jeu, cliquez sur le
+			bouton "Gestion des modes de jeu" dans le menu de navigation. Là vous
+			pouvez ajouter, modifier et supprimer des modes de jeu. ATTENTION !
+			Les modes de jeu modifiés et supprimés ne sont plus accessibles par
+			la suite. Leurs scores eux, le resteront et une mention "OLD"
+			apparaît dans le Panthéon du démineur pour vous faire savoir qu'il
+			s'agit d'un mode de jeu désormais inaccessible.
+			<center>
+				<img width="50%" src="images/rules_08.png">
+			</center>
+			Lors de l'ajout ou de l'édition d'un mode de jeu, il y a toutefois
+			quelques contraintes : Tout d'abord, si votre tableau fait (par
+			exemple) 100 cases, il paraît évident qu'il ne pourra pas contenir
+			plus de 99 mines (même si 99 mines sur 100 cases est déjà un mode de
+			jeu assez farfelu, l'application ne vous jugera pas et acceptera de
+			le créer). De plus, 0 mines peu importe la taille du tableau ne
+			pourra pas fonctionner non plus. Et enfin, si un mode de jeu porte
+			déjà le même nom, l'application prendra la liberté de numéroter votre
+			mode de jeu afin que vous vous y retrouviez plus facilement.
+			<center>
+				<img width="50%" src="images/rules_09.png">
+			</center>
+			</p>
+
+
+		</div>
+		<div id="scores" class="collapse">
+			<hr />
+			<h2>Panthéon du démineur</h2>
+			<hr />
+			<div th:each="gm : ${gamemodes}">
+				<h5 th:if="${gm.deleted}" th:text="${gm.title + ' - OLD'}"></h5>
+				<h5 th:if="!${gm.deleted}" th:text="${gm.title}"></h5>
+				<p th:each="score : ${scores}"
+					th:if="${score.gamemode}==${gm.title}"
+					th:text="${score.getScoreString()}"></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title}, ~{::content})}">
+	<head>
+		<title th:fragment="title">Minesweeper - Liste des modes de jeu</title>
+	</head>
+	
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des modes de jeu</h1>
+			
+			<p>
+				<a th:href="@{/gamemode/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter un mode de jeu</a>
+				<a th:href="@{/}" class="btn btn-secondary" role="button" aria-pressed="true">Retour</a>
+			</p>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Titre</th>
+						<th>Taille</th>
+						<th>Mines</th>
+						<th>Supprimé</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="gamemode : ${gamemodes}">
+						<td th:text="*{gamemode.id}">1</td>
+						<td th:text="*{gamemode.title}">Facile</td>
+						<td th:text="*{gamemode.width}+x+*{gamemode.height}">0x0</td>
+						<td th:text="*{gamemode.nbMines}">0</td>
+						<td th:if="*{gamemode.deleted}==true" th:text="Oui"></td>
+						<td th:if="*{gamemode.deleted}==false" th:text="Non"></td>
+						<td>
+							<a th:if="*{gamemode.deleted}==false" th:href="@{/gamemode/edit/}+*{gamemode.id}" class="btn btn-primary" role="button">
+								<span class="oi oi-pencil" title="Modifier" aria-hidden="true"></span>
+							</a>
+							<a th:if="*{gamemode.deleted}==false" th:href="@{/gamemode/remove/}+*{gamemode.id}" class="btn btn-danger" role="button">
+								<span class="oi oi-delete" title="Supprimer" aria-hidden="true"></span>
+							</a>
+							<span th:if="*{gamemode.deleted}==true">(Mode de jeu obsolète)</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</body>
+</html>
