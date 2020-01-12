@@ -41,3 +41,10 @@ span.discovered{
 span.bomb{
 	background-color: red;
 }
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
