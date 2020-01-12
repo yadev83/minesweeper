@@ -1,5 +1,8 @@
 package fr.yadev.minesweeper.model;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,9 +31,18 @@ public class Game {
 	@Column(nullable = false)
 	private boolean playing;
 	
+	@Column(nullable = false)
+	private int mode;
+	
+	@Column(nullable = false)
+	private String player_name;
+	
 	@OneToMany
 	private List<Tile> Tiles;
 	
 	@ManyToOne
 	private GameMode gamemode;
+	
+	@Column
+	private Instant startTime;
 }

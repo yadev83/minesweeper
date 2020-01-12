@@ -10,20 +10,8 @@
 			<p th:if="${content_msg} != null">
 				<span th:text="${content_msg}">content_text_placeholder</span>
 			</p>
+			
+			<p th:each="score : ${scores}" th:text="${score.time}"></p>
 		</div>
 	</body>
-	<!-- 
-	<table>
-		<tr th:each="${CollectionUtil.range(0, height-1)}">
-			<td>
-				<a href="/play/gameid/x/y" />
-				css a{
-					display:block;
-					width:100%;
-					height:100%;
-				}
-			</td>
-		</tr>
-	</table>
-	 -->
 </html>

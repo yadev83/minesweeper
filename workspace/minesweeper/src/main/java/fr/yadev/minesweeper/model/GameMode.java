@@ -29,4 +29,7 @@ public class GameMode {
 	
 	@Column(nullable = false)
 	private int nbMines;
+	
+	@Column
+	private boolean deleted;
 }

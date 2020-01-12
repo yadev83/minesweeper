@@ -64,6 +64,12 @@ public class GameModeController {
 			return "add_gamemode";
 		}
 		
+		if(form.getNbMines() >= form.getHeight()*form.getWidth()) {
+			model.addAttribute("gamemode", form);
+			model.addAttribute("errM", "Vous ne pouvez pas mettre autant de mines, c'est insensé...");
+			return "add_gamemode";
+		}
+		
 		service.editGameMode(form.getId(), form.getTitle(), form.getWidth(), form.getHeight(), form.getNbMines());
 		
 		return "redirect:/gamemode/list";

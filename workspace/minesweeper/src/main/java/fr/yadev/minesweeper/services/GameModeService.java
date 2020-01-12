@@ -20,13 +20,15 @@ public class GameModeService {
 	public GameMode editGameMode(Long id, String title, Long width, Long height, int nbMines) {
 		GameMode gm = new GameMode();
 		if(id != null) {
-			gm = gamemodes.findById(id).get();;
+			GameMode old = gamemodes.findById(id).get();
+			old.setDeleted(true);
 		}
 		
 		gm.setTitle(title);
 		gm.setHeight(height);
 		gm.setWidth(width);
 		gm.setNbMines(nbMines);
+		gm.setDeleted(false);
 		
 		gamemodes.save(gm);
 		
@@ -47,6 +49,8 @@ public class GameModeService {
 	}
 	
 	public void deleteGameMode(Long id) {
-		gamemodes.deleteById(id);
+		GameMode gm = gamemodes.getOne(id);
+		gm.setDeleted(true);
+		gamemodes.save(gm);
 	}
 }

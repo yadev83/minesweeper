@@ -14,6 +14,6 @@ public class GameModeForm {
 	
 	private Long width;
 	private Long height;
-	
+
 	private int nbMines;
 }
